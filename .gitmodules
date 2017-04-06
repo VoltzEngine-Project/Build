@@ -1,0 +1,22 @@
+[submodule "Engine"]
+	path = Engine
+	url = https://github.com/VoltzEngine-Project/Engine
+	branch = development
+[submodule "ModFlags"]
+	path = ModFlags
+	url = https://github.com/VoltzEngine-Project/Modflags
+[submodule "Prefabs"]
+	path = Prefabs
+	url = https://github.com/VoltzEngine-Project/Prefabs
+[submodule "API"]
+	path = API
+	url = https://github.com/VoltzEngine-Project/API
+[submodule "ModCompat"]
+	path = ModCompat
+	url = https://github.com/VoltzEngine-Project/ModCompat
+[submodule "Lib-Access"]
+	path = Lib-Access
+	url = https://github.com/VoltzEngine-Project/Lib-Access
+[submodule "CodeGenerator"]
+	path = CodeGenerator
+	url = https://github.com/VoltzEngine-Project/CodeGenerator
