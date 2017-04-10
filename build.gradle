@@ -201,13 +201,13 @@ task makeChangelog(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask) {
 }
 
 
-publishing {
+/*publishing {
     publications {
         mavenJava(MavenPublication)
         {
             artifact apiZip
         }
     }
-}
+}*/
 
 tasks.build.dependsOn apiZip, templetesZip
