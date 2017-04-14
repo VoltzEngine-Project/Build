@@ -53,45 +53,29 @@ def currentJvm = org.gradle.internal.jvm.Jvm.current()
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-task IFeelSoPretty(type: Delete){
-    mustRunAfter'clean'
-    delete 'src/main/scala'
-
-}
-
-task CopyTask(type: Copy) {
-    mustRunAfter 'clean'
-    mustRunAfter 'IFeelSoPretty'
-    from 'API/src/main/scala'
-    from 'CodeGenerator/src/main/java'
-    from 'Engine/src/main/scala'
-    from 'Lib-Access/src/main/scala'
-    from 'ModFlags/src/main/scala'
-    from 'ModCompat/src/main/scala'
-    from 'Prefabs/src/main/scala'
-    into 'src/main/scala'
+task clearSrc{
+  mustRunAfter 'clean'
+  delete fileTree(dir: 'src' , include: '**/*')
 }
 
 task copyMethodWithExplicitDependencies{
-    // up-to-date check for inputs, plus add copyTask as dependency
-    inputs.file CopyTask
-    outputs.dir 'src/main/scala' // up-to-date check for outputs
-    doLast{
-        copy {
-            // Copy the output of copyTask
-            from CopyTask
-            into 'src/main/scala'
-        }
+    mustRunAfter 'clean'
+    mustRunAfter 'clearSrc'
+  
+    copy {       
+        from fileTree('API/src')
+        from fileTree('CodeGenerator/src')
+        from fileTree('Engine/src')
+        from fileTree('Lib-Access/src')
+        from fileTree('ModFlags/src')
+        from fileTree('ModCompat/src')
+        from fileTree('Prefabs/src')
+        into 'src'
+        include '**/*'
     }
 }
 
-task copyTest(type: Copy){
-    mustRunAfter 'clean'
-    from 'Engine/src/test'
-    into 'src/test'
-}
-
-tasks.downloadClient.dependsOn IFeelSoPretty, copyMethodWithExplicitDependencies, copyTest
+tasks.downloadClient.dependsOn clearSrc, copyMethodWithExplicitDependencies
 
 lombok {
     // optional: values below are the defaults
