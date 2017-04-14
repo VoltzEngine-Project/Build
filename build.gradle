@@ -54,12 +54,14 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 task IFeelSoPretty(type: Delete){
+    mustRunAfter'clean'
     delete 'src/main/scala'
 
 }
 
 task CopyTask(type: Copy) {
     mustRunAfter 'clean'
+    mustRunAfter 'IFeelSoPretty'
     from 'API/src/main/scala'
     from 'CodeGenerator/src/main/java'
     from 'Engine/src/main/scala'
@@ -89,7 +91,7 @@ task copyTest(type: Copy){
     into 'src/test'
 }
 
-tasks.downloadClient.dependsOn copyMethodWithExplicitDependencies, copyTest
+tasks.downloadClient.dependsOn IFeelSoPretty, copyMethodWithExplicitDependencies, copyTest
 
 lombok {
     // optional: values below are the defaults
