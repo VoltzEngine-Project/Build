@@ -53,6 +53,11 @@ def currentJvm = org.gradle.internal.jvm.Jvm.current()
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+task IFeelSoPretty(type: Delete){
+    delete 'src/main/scala'
+
+}
+
 task CopyTask(type: Copy) {
     mustRunAfter 'clean'
     from 'API/src/main/scala'
@@ -68,7 +73,7 @@ task CopyTask(type: Copy) {
 task copyMethodWithExplicitDependencies{
     // up-to-date check for inputs, plus add copyTask as dependency
     inputs.file CopyTask
-    outputs.dir 'some-dir' // up-to-date check for outputs
+    outputs.dir 'src/main/scala' // up-to-date check for outputs
     doLast{
         copy {
             // Copy the output of copyTask
@@ -78,7 +83,13 @@ task copyMethodWithExplicitDependencies{
     }
 }
 
-tasks.downloadClient.dependsOn copyMethodWithExplicitDependencies
+task copyTest(type: Copy){
+    mustRunAfter 'clean'
+    from 'Engine/src/test'
+    into 'src/test'
+}
+
+tasks.downloadClient.dependsOn copyMethodWithExplicitDependencies, copyTest
 
 lombok {
     // optional: values below are the defaults
