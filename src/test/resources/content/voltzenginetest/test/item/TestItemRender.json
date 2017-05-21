@@ -1,10 +1,11 @@
 {
   "render": {
-    "type":"VE-Item",
+    "type":"item",
     "contentID": "item.voltzenginetest:testVeItem",
     "states": [
       {
         "id": "item.inventory",
+        "renderType": "item",
         "textureID": "ve.testItemTexture"
       }
     ]

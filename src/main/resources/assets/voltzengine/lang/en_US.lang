@@ -388,7 +388,12 @@ toolmode.rotation.name=Rotation
 
 item.voltzengine:devDataTool.name=Dev Data Tool
 item.voltzengine:devDataTool.0.name=[DEV] Simple Block Data
+item.voltzengine:devDataTool.0.info=Outputs into chat basic block data
 item.voltzengine:devDataTool.1.name=[DEV] Reflective Tile Data
+item.voltzengine:devDataTool.1.info=Outputs into chat advanced block data, by reflectively dumping values, of fields and objects
+
+item.voltzengine:ve.instanthole.name=[DEV] Instant Hole
+item.voltzengine:ve.instanthole.info=Used to debug generation underground, by removing common materials, in a chunk to see ores or structures
 
 item.voltzengine:sheetMetalTools.name=Sheet Metal Tool
 item.voltzengine:sheetMetalTools.hammer.name=Sheet Metal Hammer
@@ -420,6 +425,7 @@ link.error.tile.already.added.name=Tile already linked
 link.cleared.name=Link data cleared
 link.pos.set.name=Link data set
 link.completed.name=Link Created
+link.updated.name=Link Updated
 
 # Items
 item.voltzengine:screwdriver.name=Screwdriver
@@ -444,6 +450,10 @@ info.voltzengine:explosive.name=Explosive
 info.voltzengine:explosive.size.name=Size
 info.voltzengine:explosive.yield.name=Yield: %.2fm radius
 info.voltzengine:explosive.item.name=ExItem
+
+info.voltzengine:tile.error.gui.none=No gui found to open
+info.voltzengine:tile.error.missing.data=Tile is missing data for this action
+info.voltzengine:tile.error.missing=Tile could not be found
 
 ## Permissions
 root.machine=Manage Machine

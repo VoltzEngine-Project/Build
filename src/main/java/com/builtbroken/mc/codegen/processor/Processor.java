@@ -7,8 +7,6 @@ import com.builtbroken.mc.codegen.template.Template;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,13 +24,16 @@ public abstract class Processor
     /** Name of the annotation that defines what templates to load */
     public final String templateAnnotationKey;
 
+    public final String classToExtend;
+
     /**
      * @param annotationKey - needs to be the exact name of the annotation
      */
-    public Processor(String annotationKey, String templateAnnotationKey)
+    public Processor(String annotationKey, String templateAnnotationKey, String classToExtend)
     {
         this.annotationKey = annotationKey;
         this.templateAnnotationKey = templateAnnotationKey;
+        this.classToExtend = classToExtend;
     }
 
     /**
@@ -90,9 +91,9 @@ public abstract class Processor
         builder.append("//FUNCTIONALITY CAN NOT BE GUARANTIED IN ANY WAY \n");
         builder.append("//USE AT YOUR OWN RISK \n");
         builder.append("//-------------------------------------------------------\n");
-        builder.append("//Build date: ");
-        builder.append(LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm:ss.SSS")));
-        builder.append("\n");
+        //builder.append("//Build date: ");
+        //builder.append(LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm:ss.SSS")));
+        //builder.append("\n");
         builder.append("//Built on: ");
         builder.append(System.getProperty("user.name"));
         builder.append("\n");
@@ -208,13 +209,16 @@ public abstract class Processor
     {
         for (Template template : templates)
         {
-            List<String> importsFromProcessor = template.getImports();
-            for (String imp : importsFromProcessor)
+            if (template != null)
             {
-                //Prevent duplication
-                if (!imports.contains(imp))
+                List<String> importsFromProcessor = template.getImports();
+                for (String imp : importsFromProcessor)
                 {
-                    imports.add(imp);
+                    //Prevent duplication
+                    if (!imports.contains(imp))
+                    {
+                        imports.add(imp);
+                    }
                 }
             }
         }
@@ -241,7 +245,7 @@ public abstract class Processor
     {
         //TODO implement annotations
         //Create header
-        builder.append("public class " + buildData.outputClassName + " extends TileEntityWrapper");
+        builder.append("public class " + buildData.outputClassName + " extends " + classToExtend);
 
         //Add implements
         List<String> interfaces = new ArrayList();
@@ -358,7 +362,7 @@ public abstract class Processor
                 Main.out("");
                 Main.out(spacer + "--File: " + file.getName());
                 Main.out(spacer + " |------------------------->");
-                Template template = new Template(templateAnnotationKey);
+                Template template = new Template(templateAnnotationKey, classToExtend);
                 try
                 {
 
@@ -369,10 +373,6 @@ public abstract class Processor
                         if (template.isValid())
                         {
                             templateMap.put(template.getKey(), template);
-                        }
-                        else
-                        {
-                            Main.error("Template file is invalid, exiting to prevent issues " + file);
                         }
                     }
                 }
