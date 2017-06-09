@@ -58,7 +58,7 @@ task clearSrc{
   delete fileTree(dir: 'src' , include: '**/*')
 }
 
-task copyMethodWithExplicitDependencies{
+task copyLibs{
     mustRunAfter 'clean'
     mustRunAfter 'clearSrc'
   
@@ -75,7 +75,7 @@ task copyMethodWithExplicitDependencies{
     }
 }
 
-tasks.downloadClient.dependsOn clearSrc, copyMethodWithExplicitDependencies
+tasks.downloadClient.dependsOn clearSrc, copyLibs
 
 lombok {
     // optional: values below are the defaults
