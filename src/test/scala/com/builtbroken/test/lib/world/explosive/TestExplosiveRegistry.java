@@ -3,9 +3,9 @@ package com.builtbroken.test.lib.world.explosive;
 import com.builtbroken.mc.api.event.TriggerCause;
 import com.builtbroken.mc.api.explosive.IExplosiveHandler;
 import com.builtbroken.mc.imp.transform.vector.Location;
-import com.builtbroken.mc.lib.world.explosive.ExplosiveRegistry;
-import com.builtbroken.mc.prefab.explosive.handler.ExplosiveHandlerTNT;
-import com.builtbroken.mc.prefab.items.ItemStackWrapper;
+import com.builtbroken.mc.framework.explosive.ExplosiveRegistry;
+import com.builtbroken.mc.core.content.blast.tnt.ExplosiveHandlerTNT;
+import com.builtbroken.mc.lib.data.item.ItemStackWrapper;
 import com.builtbroken.mc.testing.junit.AbstractTest;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -21,8 +21,8 @@ public class TestExplosiveRegistry extends AbstractTest
     public void testGetString()
     {
         ExplosiveHandlerTNT t = new ExplosiveHandlerTNT();
-        ExplosiveRegistry.getExplosiveMap().put("Yolo", t );
-        assertSame(t, ExplosiveRegistry.get("Yolo"));
+        ExplosiveRegistry.getExplosiveMap().put("yolo", t );
+        assertSame(t, ExplosiveRegistry.get("yolo"));
     }
 
     /** Tests {@link ExplosiveRegistry#get(ItemStack) */
