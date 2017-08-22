@@ -78,6 +78,7 @@ task copyLibs{
         from fileTree('ModFlags/src')
         from fileTree('ModCompat/src')
         from fileTree('Prefabs/src')
+        from fileTree('Minecraft-1.7/src')
         into 'src'
         include '**/*'
     }
