@@ -13,5 +13,7 @@ cd ../ModFlags
 git pull origin master
 cd ../Prefabs
 git pull origin master
+cd ../Minecraft-1.7
+git pull origin master
 cd ..
 @pause
