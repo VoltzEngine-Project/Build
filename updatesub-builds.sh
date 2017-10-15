@@ -1,3 +1,4 @@
+#!/bin/bash
 @echo off
 cd API
 git pull origin master
