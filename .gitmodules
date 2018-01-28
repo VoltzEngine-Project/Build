@@ -1,7 +1,7 @@
 [submodule "Engine"]
 	path = Engine
 	url = https://github.com/VoltzEngine-Project/Engine
-	branch = development
+	branch = 1.12
 [submodule "ModFlags"]
 	path = ModFlags
 	url = https://github.com/VoltzEngine-Project/Modflags
