@@ -8,15 +8,18 @@
 [submodule "Prefabs"]
 	path = Prefabs
 	url = https://github.com/VoltzEngine-Project/Prefabs
+	branch = 1.12
 [submodule "API"]
 	path = API
 	url = https://github.com/VoltzEngine-Project/API
+	branch = 1.12
 [submodule "ModCompat"]
 	path = ModCompat
 	url = https://github.com/VoltzEngine-Project/ModCompat
 [submodule "Lib-Access"]
 	path = Lib-Access
 	url = https://github.com/VoltzEngine-Project/Lib-Access
+	branch = 1.12
 [submodule "CodeGenerator"]
 	path = CodeGenerator
 	url = https://github.com/VoltzEngine-Project/CodeGenerator
