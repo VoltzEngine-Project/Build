@@ -114,6 +114,30 @@ if (new File(projectDir, '.git').exists()) {
 //}
 //tasks.build.dependsOn tasks.curseforge
 
+repositories {
+  ivy {
+    name "CoFHLib"
+    artifactPattern "http://addons-origin.cursecdn.com/files/2236/777/[module]-[revision].[ext]"
+  }
+  ivy {
+    name "CoFHCore"
+    artifactPattern "http://addons-origin.cursecdn.com/files/2234/199/[module]-[revision].[ext]"
+    }
+  ivy {
+    name "RedstoneArsenal"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2233/786/[module]-[revision].[ext]"
+    }
+  ivy {
+    name "ThermalExpansion"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2233/797/[module]-[revision].[ext]"
+    }
+  ivy {
+    name "ThermalFoundation"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2233/781/[module]-[revision].[ext]"
+    }
+}
+
+
 task copyTmpChangelog(type: Copy) {
   from "Engine/engine.properties"
   into "output"
